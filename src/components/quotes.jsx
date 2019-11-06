@@ -7,17 +7,13 @@ class Quote extends Component {
     };
 
     async componentDidMount() {
-        this.getQuote();
-    }
+        const category = this.props.match.params.category_name;
 
-    componentDidUpdate(prevProps) {
-        if (prevProps.category !== this.props.category) {
-            this.getQuote();
-        }
+        this.getQuote(category);
     }
 
     getQuote = async () => {
-        const { category } = this.props;
+        const category = "dev";
 
         const data = await loadData( 
             `https://api.chucknorris.io/jokes/random?category=${category}` 
@@ -31,7 +27,7 @@ class Quote extends Component {
 
     render() {
         const { quote } = this.state;
-        const { category } =this.props;
+        const category = "dev"
         return (
             <>
         <p>{quote}</p>
